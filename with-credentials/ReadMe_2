@@ -1,0 +1,17 @@
+
+This Ansible playbook ```credentialed_awsprov.yml```does the following:
+
+1.  Sets the AWS credentials by reading them from a file at the specified path (`path/to/aws_credentials.yml`).
+    
+2.  Prompts the user for the type of AWS infrastructure they want to build. The options are 'ec2', 'rds', or 's3'.
+    
+3.  Based on the user's selection, it builds the specified AWS infrastructure.
+    
+
+-   If the user selects 'ec2', it creates an EC2 instance using the 'ec2' module.
+-   If the user selects 'rds', it creates an RDS instance using the 'rds' module.
+-   If the user selects 's3', it creates an S3 bucket using the 's3' module.
+
+The playbook uses variables to store the user's input and pass it to the relevant tasks. 
+The 'when' condition is used to specify that a task should only be run if the specified condition is true. 
+In this case, the tasks are only run if the value of the 'infrastructure' variable matches the value specified in the 'when' condition.
