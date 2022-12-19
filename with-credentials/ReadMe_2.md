@@ -29,6 +29,9 @@ aws_secret_key: YOUR_SECRET_KEY
 
 Make sure to replace ```YOUR_ACCESS_KEY``` and ```YOUR_SECRET_KEY``` with your actual AWS access key and secret key.
 
-```credentialed_awsprov.yml`` playbook will first retrieve the AWS credentials from the aws_credentials.yml file, 
-and then prompt the user for the type of AWS infrastructure they want to build. 
+```credentialed_awsprov.yml``` playbook will first retrieve the AWS credentials from the aws_credentials.yml file,
+
+
+and then prompt the user for the type of AWS infrastructure they want to build.
+
 Based on the user's input, it will run the appropriate tasks using the ```YOUR_ACCESS_KEY``` and ```YOUR_SECRET_KEY``` to authenticate the AWS modules.
