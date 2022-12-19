@@ -2,7 +2,8 @@
 
 
 ---
-This Ansible playbook prompts the user for their AWS credentials and allows them to select the type of AWS infrastructure they want to build. It then creates the specified infrastructure using the appropriate module. The infrastructure options include an EC2 instance, an RDS instance, or an S3 bucket. The playbook uses variables and 'when' conditions to customize the tasks based on the user's input.
+This playbook first prompts the user for their AWS credentials and stores the values in the aws_access_key and aws_secret_key variables. It then prompts the user for the type of AWS infrastructure they want to build and stores the response in the infrastructure variable. Finally, it runs different tasks based on the value of the infrastructure variable, using the aws_access_key and aws_secret_key variables to authenticate the AWS modules.
+
 ---
 
 This Ansible playbook does the following:
