@@ -1,0 +1,59 @@
+---
+- name: Prompt user for AWS credentials
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: aws_access_key
+      prompt: "Enter your AWS access key:"
+      private: yes
+    - name: aws_secret_key
+      prompt: "Enter your AWS secret key:"
+      private: yes
+
+- name: Prompt user for AWS infrastructure to build
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: infrastructure
+      prompt: "Which AWS infrastructure do you want to build? (ec2, rds, s3)"
+      private: no
+
+- name: Build AWS infrastructure
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Create EC2 instance
+    ec2:
+      key_name: mykey
+      instance_type: t2.micro
+      image: ami-0ff8a91507f77f867
+      wait: true
+      vpc_subnet_id: subnet-1234abcd
+      group: web-server-sg
+      access_key: "{{ aws_access_key }}"
+      secret_key: "{{ aws_secret_key }}"
+    when: infrastructure == 'ec2'
+
+  - name: Create RDS instance
+    rds:
+      command: create
+      db_instance_identifier: mydb
+      allocated_storage: 20
+      storage_type: gp2
+      vpc_security_group_ids: sg-1234abcd
+      db_instance_class: db.t2.micro
+      engine: MySQL
+      master_username: admin
+      master_user_password: adminpass
+      access_key: "{{ aws_access_key }}"
+      secret_key: "{{ aws_secret_key }}"
+    when: infrastructure == 'rds'
+
+  - name: Create S3 bucket
+    s3:
+      bucket: mybucket
+      region: us-east-1
+      mode: create
+      access_key: "{{ aws_access_key }}"
+      secret_key: "{{ aws_secret_key }}"
+    when: infrastructure == 's3'
