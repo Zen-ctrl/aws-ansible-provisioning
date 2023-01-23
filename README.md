@@ -2,15 +2,15 @@
 
 
 ---
-This playbook first prompts the user for their AWS credentials and stores the values in the aws_access_key and aws_secret_key variables. It then prompts the user for the type of AWS infrastructure they want to build and stores the response in the infrastructure variable. Finally, it runs different tasks based on the value of the infrastructure variable, using the aws_access_key and aws_secret_key variables to authenticate the AWS modules.
+This script initially questions the user for their AWS credentials and records the values in the aws access key and aws secret key variables. It then prompts the user for the type of AWS infrastructure they wish to build and keeps the response in the infrastructure variable. Finally, it runs multiple tasks dependent on the value of the infrastructure variable, using the aws access key and aws secret key variables to authenticate the AWS modules.
+
 
 ---
+This Ansible playbook accomplishes the following:
 
-This Ansible playbook does the following:
+Prompts the user for their AWS access key and secret key. These credentials are needed to authenticate with the AWS API and perform operations on their behalf.
 
-Prompts the user for their AWS access key and secret key. These credentials are needed to authenticate with the AWS API and perform actions on their behalf.
-
-Prompts the user for the type of AWS infrastructure they want to build. The options are 'ec2', 'rds', or 's3'.
+Prompts the user for the sort of AWS infrastructure they want to build. The alternatives are 'ec2', 'rds', or 's3'.
 
 Based on the user's selection, it builds the specified AWS infrastructure.
 
